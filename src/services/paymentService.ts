@@ -2,6 +2,7 @@ interface PaymentRequest {
   customer: string;
   server_id: number;
   products: Record<string, number>;
+  email: string; // Добавили обязательный email
 }
 
 interface PaymentResponse {
@@ -18,7 +19,7 @@ interface PaymentResponse {
 export const createPayment = async (paymentData: PaymentRequest): Promise<PaymentResponse> => {
   try {
     // Отправляем запрос на ваш бэкенд-сервер
-    const response = await fetch('http://localhost:3001/api/create-easydonate-payment', {
+    const response = await fetch('http://146.59.47.21:3001/api/create-easydonate-payment', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -33,7 +34,6 @@ export const createPayment = async (paymentData: PaymentRequest): Promise<Paymen
 
     const data: PaymentResponse = await response.json();
     return data;
-
   } catch (error: any) {
     console.error('Ошибка при запросе к бэкенду:', error);
     return {

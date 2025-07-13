@@ -130,15 +130,15 @@
       }
     },
     {
-      "id": "src/screens/MapPage/MapPage.tsx:24:10-to-src/screens/ElementDefault/ElementDefault.tsx",
+      "id": "src/screens/MapPage/MapPage.tsx:21:10-to-src/screens/ElementDefault/ElementDefault.tsx",
       "source": "src/screens/MapPage/MapPage.tsx",
       "target": "src/screens/ElementDefault/ElementDefault.tsx",
       "data": {
         "viaRoute": "/",
         "trigger": {
           "element": "<Link to=\"/\" className=\"flex items-center\">\n            <img \n              src=\"https://c.animaapp.com/PyecxKQm/img/soap-%282%29-3.png\" \n              alt=\"Логотип Мыло\" \n              className=\"h-8 w-auto mr-3\"\n            />\n            <span className=\"text-[#1ad76f] font-semibold text-lg\">Мыло</span>\n          </Link>",
-          "line": 24,
-          "endLine": 31,
+          "line": 21,
+          "endLine": 28,
           "column": 10,
           "endColumn": 17,
           "sourceFile": "src/screens/MapPage/MapPage.tsx"
@@ -146,13 +146,29 @@
       }
     },
     {
-      "id": "src/screens/MapPage/MapPage.tsx:34:10-to-src/screens/ElementDefault/ElementDefault.tsx",
+      "id": "src/screens/MapPage/MapPage.tsx:31:10-to-src/screens/ElementDefault/ElementDefault.tsx",
       "source": "src/screens/MapPage/MapPage.tsx",
       "target": "src/screens/ElementDefault/ElementDefault.tsx",
       "data": {
         "viaRoute": "/",
         "trigger": {
           "element": "<Link to=\"/\" className=\"text-[#a7add2] hover:text-white text-sm font-medium font-['Poppins',Helvetica] transition-colors\">\n            Главная\n          </Link>",
+          "line": 31,
+          "endLine": 33,
+          "column": 10,
+          "endColumn": 17,
+          "sourceFile": "src/screens/MapPage/MapPage.tsx"
+        }
+      }
+    },
+    {
+      "id": "src/screens/MapPage/MapPage.tsx:34:10-to-src/screens/WikiPage/WikiLayout.tsx",
+      "source": "src/screens/MapPage/MapPage.tsx",
+      "target": "src/screens/WikiPage/WikiLayout.tsx",
+      "data": {
+        "viaRoute": "/wiki",
+        "trigger": {
+          "element": "<Link to=\"/wiki\" className=\"text-[#a7add2] hover:text-white text-sm font-medium font-['Poppins',Helvetica] transition-colors\">\n            Вики\n          </Link>",
           "line": 34,
           "endLine": 36,
           "column": 10,
@@ -162,13 +178,13 @@
       }
     },
     {
-      "id": "src/screens/MapPage/MapPage.tsx:37:10-to-src/screens/WikiPage/WikiLayout.tsx",
+      "id": "src/screens/MapPage/MapPage.tsx:37:10-to-src/screens/MapPage/MapPage.tsx",
       "source": "src/screens/MapPage/MapPage.tsx",
-      "target": "src/screens/WikiPage/WikiLayout.tsx",
+      "target": "src/screens/MapPage/MapPage.tsx",
       "data": {
-        "viaRoute": "/wiki",
+        "viaRoute": "/map",
         "trigger": {
-          "element": "<Link to=\"/wiki\" className=\"text-[#a7add2] hover:text-white text-sm font-medium font-['Poppins',Helvetica] transition-colors\">\n            Вики\n          </Link>",
+          "element": "<Link to=\"/map\" className=\"text-[#1ad76f] hover:text-white text-sm font-medium font-['Poppins',Helvetica] transition-colors\">\n            Карта\n          </Link>",
           "line": 37,
           "endLine": 39,
           "column": 10,
@@ -178,31 +194,15 @@
       }
     },
     {
-      "id": "src/screens/MapPage/MapPage.tsx:40:10-to-src/screens/MapPage/MapPage.tsx",
-      "source": "src/screens/MapPage/MapPage.tsx",
-      "target": "src/screens/MapPage/MapPage.tsx",
-      "data": {
-        "viaRoute": "/map",
-        "trigger": {
-          "element": "<Link to=\"/map\" className=\"text-[#1ad76f] hover:text-white text-sm font-medium font-['Poppins',Helvetica] transition-colors\">\n            Карта\n          </Link>",
-          "line": 40,
-          "endLine": 42,
-          "column": 10,
-          "endColumn": 17,
-          "sourceFile": "src/screens/MapPage/MapPage.tsx"
-        }
-      }
-    },
-    {
-      "id": "src/screens/MapPage/MapPage.tsx:45:10-to-src/screens/ElementDefault/ElementDefault.tsx",
+      "id": "src/screens/MapPage/MapPage.tsx:42:10-to-src/screens/ElementDefault/ElementDefault.tsx",
       "source": "src/screens/MapPage/MapPage.tsx",
       "target": "src/screens/ElementDefault/ElementDefault.tsx",
       "data": {
         "viaRoute": "/",
         "trigger": {
           "element": "<Link to=\"/\" className=\"bg-[#1ad76f] hover:bg-[#18c265] text-white px-6 py-2 rounded-full text-sm font-semibold font-['Poppins',Helvetica] transition-colors\">\n            Купить проходку\n          </Link>",
-          "line": 45,
-          "endLine": 47,
+          "line": 42,
+          "endLine": 44,
           "column": 10,
           "endColumn": 17,
           "sourceFile": "src/screens/MapPage/MapPage.tsx"

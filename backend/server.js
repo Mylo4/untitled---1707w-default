@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 3001; // Порт для бэкенда
 
 // Middleware
 app.use(cors({
-  origin: 'http://localhost:5173', // Разрешить запросы только с вашего фронтенда
+  origin: ['http://localhost:5173', 'http://146.59.47.21:5173', 'http://mylo.top', 'https://mylo.top'],
   methods: ['POST'],
   allowedHeaders: ['Content-Type']
 }));
@@ -16,6 +16,7 @@ app.use(express.json()); // Для парсинга JSON-тел запросов
 // Эндпоинт для создания платежа EasyDonate
 app.post('/api/create-easydonate-payment', async (req, res) => {
   const { customer, server_id, products } = req.body;
+  const email = "mylozh414@gmail.com"; // Всегда используем ваш email
   const shopKey = process.env.EASYDONATE_SHOP_KEY; // Ваш Shop-Key из .env
 
   if (!shopKey) {
@@ -27,10 +28,19 @@ app.post('/api/create-easydonate-payment', async (req, res) => {
     return res.status(400).json({ success: false, error: 'Отсутствуют обязательные параметры: customer, server_id, products.' });
   }
 
+  // Временная заглушка - технические работы
+  return res.status(503).json({ 
+    success: false, 
+    error: 'Система платежей временно недоступна. Технические работы до 24 июня. Приносим извинения за неудобства!' 
+  });
+
+  // Закомментированный рабочий код (раскомментировать после 24 июня)
+  /*
   const params = new URLSearchParams({
     customer: customer,
     server_id: server_id.toString(),
-    products: JSON.stringify(products)
+    products: JSON.stringify(products),
+    email: email
   });
 
   try {
@@ -54,6 +64,7 @@ app.post('/api/create-easydonate-payment', async (req, res) => {
     console.error('Ошибка при запросе к EasyDonate API:', error);
     res.status(500).json({ success: false, error: 'Внутренняя ошибка сервера при создании платежа.' });
   }
+  */
 });
 
 // Запуск сервера

@@ -15,9 +15,9 @@ const linkSections = [
   {
     title: "Полезное",
     links: [
-      { text: "Карта", href: "#" },
-      { text: "Наш Discord", href: "#" },
-      { text: "Вики", href: "#" },
+      { text: "Карта", href: "/map" },
+      { text: "Наш Discord", href: "https://discord.com/invite/Z8GJGH59TU" },
+      { text: "Вики", href: "/wiki" },
     ],
   },
 ];
@@ -27,7 +27,7 @@ const socialIcons = [
   {
     name: "Discord",
     src: "https://c.animaapp.com/PyecxKQm/img/discord-svg.svg",
-    href: "#",
+    href: "https://discord.com/invite/Z8GJGH59TU",
   },
   {
     name: "TikTok",
@@ -156,6 +156,8 @@ export const FooterSection = (): JSX.Element => {
                           : link.href
                       }
                       className="text-[11px] font-medium text-[#a7add2] [font-family:'IBM_Plex_Sans',Helvetica] hover:text-white transition-colors"
+                      target={link.href.startsWith('http') ? '_blank' : '_self'}
+                      rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
                     >
                       {link.text}
                     </a>
@@ -177,6 +179,8 @@ export const FooterSection = (): JSX.Element => {
                   backgroundSize: "100% 100%",
                 }}
                 aria-label={icon.name}
+                target={icon.href.startsWith('http') ? '_blank' : '_self'}
+                rel={icon.href.startsWith('http') ? 'noopener noreferrer' : undefined}
               />
             ))}
             <a href="#" className="mt-2">

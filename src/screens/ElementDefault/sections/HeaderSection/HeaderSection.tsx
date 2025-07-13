@@ -9,17 +9,19 @@ export const HeaderSection = (): JSX.Element => {
       title: "Карта",
       icon: "https://c.animaapp.com/PyecxKQm/img/vector.svg",
       className: "relative w-[138px] h-[92px]",
+      href: "/map"
     },
     {
       title: "Вики",
       icon: "https://c.animaapp.com/PyecxKQm/img/vector-1.svg",
       className: "relative w-[100px] h-[92px]",
+      href: "/wiki"
     },
     {
       title: "Дискорд",
       icon: "https://c.animaapp.com/PyecxKQm/img/vector-2.svg",
       className: "relative w-[133px] h-[92px]",
-      offset: true,
+      href: "https://discord.com/invite/Z8GJGH59TU"
     },
   ];
 
@@ -66,7 +68,7 @@ export const HeaderSection = (): JSX.Element => {
               </div>
               <Button 
                 className="h-[54px] w-[105px] rounded-[0px_33px_33px_0px] bg-[#1ad76f] hover:bg-[#18c265] border-2 border-solid text-[11px] font-semibold font-['Poppins',Helvetica]"
-                onClick={async (event) => { // Добавлено async
+                onClick={async (event) => {
                   const nicknameInput = document.getElementById('nicknameInput') as HTMLInputElement;
                   const nickname = nicknameInput?.value.trim();
                   
@@ -127,9 +129,14 @@ export const HeaderSection = (): JSX.Element => {
                   key={link.title}
                   className={`${index === 2 ? "mt-[25px] ml-[60px]" : index === 1 ? "ml-[13px]" : ""}`}
                 >
-                  <div className={`${link.className} group cursor-pointer transition-all duration-300 hover:z-10`}>
+                  <a 
+                    href={link.href}
+                    target={link.href.startsWith('http') ? '_blank' : '_self'}
+                    rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                    className={`${link.className} group cursor-pointer transition-all duration-300 hover:z-10 block`}
+                  >
                     <img
-                      className={`absolute ${index === 0 ? "w-[117px]" : index === 1 ? "w-[79px]" : "w-[113px]"} h-[92px] top-0 left-0 transition-all duration-300 group-hover:scale-110 group-hover:brightness-[5] group-hover:invert group-hover:contrast-[100%]`}
+                      className={`absolute ${index === 0 ? "w-[117px]" : index === 1 ? "w-[79px]" : "w-[113px]"} h-[92px] top-0 left-0 transition-all duration-300 group-hover:scale-110 group-hover:brightness-[5]`}
                       alt={`${link.title} icon`}
                       src={link.icon}
                     />
@@ -144,13 +151,11 @@ export const HeaderSection = (): JSX.Element => {
                     >
                       {link.title}
                     </div>
-                  </div>
+                  </a>
                 </div>
               ))}
             </div>
           </div>
-
-          {/* Removed right side image as it's now part of the background */}
         </div>
       </div>
     </header>
