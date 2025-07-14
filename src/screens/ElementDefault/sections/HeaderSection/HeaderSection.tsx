@@ -9,19 +9,17 @@ export const HeaderSection = (): JSX.Element => {
       title: "Карта",
       icon: "https://c.animaapp.com/PyecxKQm/img/vector.svg",
       className: "relative w-[138px] h-[92px]",
-      href: "/map"
     },
     {
       title: "Вики",
       icon: "https://c.animaapp.com/PyecxKQm/img/vector-1.svg",
       className: "relative w-[100px] h-[92px]",
-      href: "/wiki"
     },
     {
       title: "Дискорд",
       icon: "https://c.animaapp.com/PyecxKQm/img/vector-2.svg",
       className: "relative w-[133px] h-[92px]",
-      href: "https://discord.com/invite/Z8GJGH59TU"
+      offset: true,
     },
   ];
 
@@ -29,8 +27,8 @@ export const HeaderSection = (): JSX.Element => {
     <header className="relative w-full h-[873px] bg-[#070914] overflow-hidden">
       <div className="absolute inset-0 w-full h-full">
         <img 
-          src="https://c.animaapp.com/PyecxKQm/img/header_1.png" 
-          alt="Minecraft cave scene" 
+          src="https://c.animaapp.com/PyecxKQm/img/frame-2222.png" 
+          alt="Minecraft character with TNT" 
           className="w-full h-full object-cover object-center"
         />
       </div>
@@ -40,7 +38,7 @@ export const HeaderSection = (): JSX.Element => {
           <div className="w-[65%] pt-[169px] pl-[170px] z-10 relative">
             <div className="max-w-[582px]">
               <h1 className="font-['Montserrat',Helvetica] font-bold text-[57.2px] leading-[55.7px]">
-                <span className="text-[#1ad76f]">Мыло </span>
+                <span className="text-[#e20e41]">Мыло </span>
                 <span className="text-white">приватный сервер.</span>
               </h1>
 
@@ -67,8 +65,8 @@ export const HeaderSection = (): JSX.Element => {
                 />
               </div>
               <Button 
-                className="h-[54px] w-[105px] rounded-[0px_33px_33px_0px] bg-[#1ad76f] hover:bg-[#18c265] border-2 border-solid text-[11px] font-semibold font-['Poppins',Helvetica]"
-                onClick={async (event) => {
+                className="h-[54px] w-[105px] rounded-[0px_33px_33px_0px] bg-[#e20e41] hover:bg-[#e20e41] border-2 border-solid text-[11px] font-semibold font-['Poppins',Helvetica]"
+                onClick={() => {
                   const nicknameInput = document.getElementById('nicknameInput') as HTMLInputElement;
                   const nickname = nicknameInput?.value.trim();
                   
@@ -77,40 +75,22 @@ export const HeaderSection = (): JSX.Element => {
                     return;
                   }
                   
-                  // Показываем индикатор загрузки
-                  const button = event.currentTarget as HTMLButtonElement;
-                  const originalText = button.innerText;
-                  button.innerText = "Загрузка...";
-                  button.disabled = true;
+                  // EasyDonate payment parameters
+                  const serverId = 124113; // ID сервера
+                  const productId = 995137; // ID товара (проходка)
                   
-                  try {
-                    // Импортируем сервис для создания платежа
-                    const { createPayment } = await import("../../../../services/paymentService");
-                    
-                    // Параметры для создания платежа
-                    const paymentData = {
-                      customer: nickname,
-                      server_id: 124113, // ID вашего сервера
-                      products: { "995137": 1 } // ID товара и количество
-                    };
-                    
-                    // Создаем платеж, отправляя запрос на ваш бэкенд
-                    const response = await createPayment(paymentData);
-                    
-                    if (response.success && response.payment_url) {
-                      // Перенаправляем пользователя на полученную ссылку оплаты
-                      window.location.href = response.payment_url;
-                    } else {
-                      alert(`Ошибка при создании платежа: ${response.error || 'Неизвестная ошибка'}`);
-                    }
-                  } catch (error) {
-                    console.error('Ошибка:', error);
-                    alert('Произошла ошибка при обработке платежа');
-                  } finally {
-                    // Восстанавливаем состояние кнопки
-                    button.innerText = originalText;
-                    button.disabled = false;
-                  }
+                  // Создаем объект продуктов в формате {"995137": 1}
+                  const productsObj = { [productId]: 1 };
+                  const encodedProducts = encodeURIComponent(JSON.stringify(productsObj));
+                  
+                  // Build the payment URL with the correct API format
+                  const paymentUrl = `https://easydonate.ru/api/v3/shop/payment/create?customer=${encodeURIComponent(nickname)}&server_id=${serverId}&products=${encodedProducts}`;
+                  
+                  // Show payment URL in alert (for development/testing)
+                  alert(`Переход на страницу оплаты: ${paymentUrl}`);
+                  
+                  // In production, uncomment this line to redirect:
+                  // window.location.href = paymentUrl;
                 }}
               >
                 Войти
@@ -129,14 +109,9 @@ export const HeaderSection = (): JSX.Element => {
                   key={link.title}
                   className={`${index === 2 ? "mt-[25px] ml-[60px]" : index === 1 ? "ml-[13px]" : ""}`}
                 >
-                  <a 
-                    href={link.href}
-                    target={link.href.startsWith('http') ? '_blank' : '_self'}
-                    rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                    className={`${link.className} group cursor-pointer transition-all duration-300 hover:z-10 block`}
-                  >
+                  <div className={`${link.className} group cursor-pointer transition-all duration-300 hover:z-10`}>
                     <img
-                      className={`absolute ${index === 0 ? "w-[117px]" : index === 1 ? "w-[79px]" : "w-[113px]"} h-[92px] top-0 left-0 transition-all duration-300 group-hover:scale-110 group-hover:brightness-[5]`}
+                      className={`absolute ${index === 0 ? "w-[117px]" : index === 1 ? "w-[79px]" : "w-[113px]"} h-[92px] top-0 left-0 transition-all duration-300 group-hover:scale-110 group-hover:brightness-[5] group-hover:invert group-hover:contrast-[100%]`}
                       alt={`${link.title} icon`}
                       src={link.icon}
                     />
@@ -151,11 +126,13 @@ export const HeaderSection = (): JSX.Element => {
                     >
                       {link.title}
                     </div>
-                  </a>
+                  </div>
                 </div>
               ))}
             </div>
           </div>
+
+          {/* Removed right side image as it's now part of the background */}
         </div>
       </div>
     </header>

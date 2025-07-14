@@ -17,7 +17,7 @@ export const WikiGuides = (): JSX.Element => {
 
   return (
     <div className="bg-[#161724] rounded-xl p-8 border border-[#2a2c3c]">
-      <h2 className="text-3xl font-bold mb-6 text-[#1ad76f] flex items-center">
+      <h2 className="text-3xl font-bold mb-6 text-[#e20e41] flex items-center">
         <span className="mr-3">📚</span>
         <span>Гайды</span>
       </h2>
@@ -25,10 +25,10 @@ export const WikiGuides = (): JSX.Element => {
       <div className="prose prose-invert max-w-none">
         <ul className="space-y-4 list-none p-0">
           {/* Chat Guide */}
-          <li className="bg-[rgba(255,255,255,0.05)] rounded-lg border border-[rgba(26,215,111,0.3)] overflow-hidden">
+          <li className="bg-[rgba(255,255,255,0.05)] rounded-lg border border-[rgba(226,14,65,0.3)] overflow-hidden">
             <button 
               onClick={() => toggleGuide("chat")}
-              className="w-full p-4 text-left flex items-center justify-between text-[#1ad76f] text-xl font-medium hover:bg-[rgba(26,215,111,0.1)] transition-colors"
+              className="w-full p-4 text-left flex items-center justify-between text-[#e20e41] text-xl font-medium hover:bg-[rgba(226,14,65,0.1)] transition-colors"
             >
               <div className="flex items-center">
                 <i className="mr-2">📘</i>
@@ -56,23 +56,23 @@ export const WikiGuides = (): JSX.Element => {
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                   <div className="bg-[rgba(0,0,0,0.2)] p-3 rounded-lg">
-                    <code className="text-[#1ad76f] font-mono">^ender</code>
+                    <code className="text-[#e20e41] font-mono">^ender</code>
                     <p className="text-[#a7add2] text-sm mt-1">Показать содержимое своего эндер-сундука в чате</p>
                   </div>
                   <div className="bg-[rgba(0,0,0,0.2)] p-3 rounded-lg">
-                    <code className="text-[#1ad76f] font-mono">^inv</code>
+                    <code className="text-[#e20e41] font-mono">^inv</code>
                     <p className="text-[#a7add2] text-sm mt-1">Показать инвентарь</p>
                   </div>
                   <div className="bg-[rgba(0,0,0,0.2)] p-3 rounded-lg">
-                    <code className="text-[#1ad76f] font-mono">^item</code>
+                    <code className="text-[#e20e41] font-mono">^item</code>
                     <p className="text-[#a7add2] text-sm mt-1">Показать предмет в руке</p>
                   </div>
                   <div className="bg-[rgba(0,0,0,0.2)] p-3 rounded-lg">
-                    <code className="text-[#1ad76f] font-mono">^ping</code>
+                    <code className="text-[#e20e41] font-mono">^ping</code>
                     <p className="text-[#a7add2] text-sm mt-1">Отобразить свой пинг</p>
                   </div>
                   <div className="bg-[rgba(0,0,0,0.2)] p-3 rounded-lg">
-                    <code className="text-[#1ad76f] font-mono">^pos</code>
+                    <code className="text-[#e20e41] font-mono">^pos</code>
                     <p className="text-[#a7add2] text-sm mt-1">Отправить свои координаты</p>
                   </div>
                 </div>
@@ -91,7 +91,7 @@ export const WikiGuides = (): JSX.Element => {
                 </h4>
                 
                 <div className="bg-[rgba(0,0,0,0.2)] p-4 rounded-lg mb-4">
-                  <code className="text-[#1ad76f] font-mono">/me</code>
+                  <code className="text-[#e20e41] font-mono">/me</code>
                   <p className="text-[#a7add2] mt-1">Отправить сообщение от третьего лица.</p>
                   <p className="text-[#a7add2] mt-2">Пример: <code className="bg-[rgba(0,0,0,0.3)] px-2 py-1 rounded">/me улыбается тепло.</code></p>
                   <p className="text-[#a7add2] mt-1">(В чате отобразится: <span className="text-[#ff9dd1]">Игрок улыбается тепло.</span>)</p>
@@ -101,10 +101,10 @@ export const WikiGuides = (): JSX.Element => {
           </li>
 
           {/* Mods Installation Guide */}
-          <li className="bg-[rgba(255,255,255,0.05)] rounded-lg border border-[rgba(26,215,111,0.3)] overflow-hidden">
+          <li className="bg-[rgba(255,255,255,0.05)] rounded-lg border border-[rgba(226,14,65,0.3)] overflow-hidden">
             <button 
               onClick={() => toggleGuide("mods")}
-              className="w-full p-4 text-left flex items-center justify-between text-[#1ad76f] text-xl font-medium hover:bg-[rgba(26,215,111,0.1)] transition-colors"
+              className="w-full p-4 text-left flex items-center justify-between text-[#e20e41] text-xl font-medium hover:bg-[rgba(226,14,65,0.1)] transition-colors"
             >
               <div className="flex items-center">
                 <i className="mr-2">⚙️</i>
@@ -123,13 +123,13 @@ export const WikiGuides = (): JSX.Element => {
                   />
                 </div>
 
-                <div className="bg-[rgba(26,215,111,0.1)] border border-[#1ad76f] rounded-lg p-4 mb-6">
+                <div className="bg-[rgba(226,14,65,0.1)] border border-[#e20e41] rounded-lg p-4 mb-6">
                   <h4 className="text-white text-lg mb-2 flex items-center">
                     <span className="mr-2">🚀</span>
                     <span>Скачать через Modrinth</span>
                   </h4>
                   <ol className="list-decimal pl-6 mb-2 text-[#a7add2]">
-                    <li className="mb-2">Переходим на <a href="https://modrinth.com/modpack/omylo/versions" target="_blank" rel="noopener noreferrer" className="text-[#1ad76f] hover:underline">страницу со сборкой</a> и скачиваем последнюю доступную версию.</li>
+                    <li className="mb-2">Переходим на <a href="https://modrinth.com/modpack/omylo/versions" target="_blank" rel="noopener noreferrer" className="text-[#e20e41] hover:underline">страницу со сборкой</a> и скачиваем последнюю доступную версию.</li>
                     <li className="mb-2">Если у вас есть Modrinth лаунчер, тогда скорее всего он у вас основной для формата <strong className="text-white">.mrpack</strong>, просто нажимаем два раза на файл, и сборка установится в лаунчере.</li>
                     <li className="mb-2">Если у вас другой лаунчер который поддерживает <strong className="text-white">.mrpack</strong>, вы должны зайти в него и импортировать сборку в него. Например на лаунчере Prism достаточно просто перетащить файл <strong className="text-white">.mrpack</strong> в интерфейс и он предложит установить его.</li>
                   </ol>
@@ -141,7 +141,7 @@ export const WikiGuides = (): JSX.Element => {
                     <span>Установка Fabric</span>
                   </h4>
                   <p className="text-[#a7add2] mb-4">
-                    Вы можете установить Fabric скачав его на <a href="https://fabricmc.net/use/installer/" target="_blank" rel="noopener noreferrer" className="text-[#1ad76f] hover:underline">официальном сайте</a>.
+                    Вы можете установить Fabric скачав его на <a href="https://fabricmc.net/use/installer/" target="_blank" rel="noopener noreferrer" className="text-[#e20e41] hover:underline">официальном сайте</a>.
                   </p>
                   <ol className="list-decimal pl-6 mb-4 text-[#a7add2]">
                     <li className="mb-2">Откройте файл (Fabric-installer)</li>
@@ -178,8 +178,8 @@ export const WikiGuides = (): JSX.Element => {
           </li>
         </ul>
         
-        <div className="mt-8 bg-[rgba(26,215,111,0.1)] rounded-lg p-4 text-center">
-          <p className="text-[#1ad76f] font-medium">Нажмите на заголовок гайда, чтобы развернуть или свернуть его содержимое</p>
+        <div className="mt-8 bg-[rgba(226,14,65,0.1)] rounded-lg p-4 text-center">
+          <p className="text-[#e20e41] font-medium">Нажмите на заголовок гайда, чтобы развернуть или свернуть его содержимое</p>
         </div>
       </div>
     </div>

@@ -12,7 +12,6 @@ export const WikiLayout = (): JSX.Element => {
     { id: "features", title: "🎮 Особенности", path: "/wiki/features" },
     { id: "crafts", title: "🔨 Крафты", path: "/wiki/crafts" },
     { id: "guides", title: "📚 Гайды", path: "/wiki/guides" },
-    { id: "mods", title: "⚙️ Моды", path: "/wiki/mods" },
   ];
 
   return (
@@ -22,15 +21,15 @@ export const WikiLayout = (): JSX.Element => {
         <div className="flex items-center">
           <Link to="/" className="flex items-center">
             <img 
-              src="https://c.animaapp.com/PyecxKQm/img/soap-%282%29-3.png" 
+              src="https://c.animaapp.com/PyecxKQm/img/group-19.png" 
               alt="Логотип Мыло" 
               className="h-8 w-auto mr-3"
             />
-            <span className="text-[#1ad76f] font-semibold text-lg">Мыло Вики</span>
+            <span className="text-[#e20e41] font-semibold text-lg">Мыло Вики</span>
           </Link>
         </div>
         <div className="flex items-center space-x-8">
-          <Link to="/wiki" className="text-[#1ad76f] hover:text-white text-sm font-medium font-['Poppins',Helvetica] transition-colors">
+          <Link to="/wiki" className="text-[#e20e41] hover:text-white text-sm font-medium font-['Poppins',Helvetica] transition-colors">
             Вики
           </Link>
           <Link to="/map" className="text-[#a7add2] hover:text-white text-sm font-medium font-['Poppins',Helvetica] transition-colors">
@@ -41,7 +40,7 @@ export const WikiLayout = (): JSX.Element => {
           </Link>
         </div>
         <div>
-          <Link to="/" className="bg-[#1ad76f] hover:bg-[#18c265] text-white px-6 py-2 rounded-full text-sm font-semibold font-['Poppins',Helvetica] transition-colors">
+          <Link to="/" className="bg-[#e20e41] hover:bg-[#c90d3a] text-white px-6 py-2 rounded-full text-sm font-semibold font-['Poppins',Helvetica] transition-colors">
             Купить проходку
           </Link>
         </div>
@@ -53,7 +52,7 @@ export const WikiLayout = (): JSX.Element => {
           {/* Sidebar */}
           <div className="w-full md:w-1/4">
             <div className="bg-[#161724] rounded-xl p-6 border border-[#2a2c3c] sticky top-24">
-              <h2 className="text-2xl font-bold mb-6 text-[#1ad76f]">Навигация</h2>
+              <h2 className="text-2xl font-bold mb-6 text-[#e20e41]">Навигация</h2>
               <ul className="space-y-4">
                 {navItems.map((item) => (
                   <li key={item.id}>
@@ -61,7 +60,7 @@ export const WikiLayout = (): JSX.Element => {
                       to={item.path}
                       className={`text-left block w-full py-2 px-4 rounded-lg transition-colors ${
                         currentPath === item.path
-                          ? "bg-[#1ad76f]/10 text-[#1ad76f]"
+                          ? "bg-[#e20e41]/10 text-[#e20e41]"
                           : "text-[#a7add2] hover:bg-[#2a2c3c]/30 hover:text-white"
                       }`}
                     >
@@ -73,7 +72,7 @@ export const WikiLayout = (): JSX.Element => {
             </div>
           </div>
 
-          {/* Content area - renders the nested route */}
+          {/* Content area - renders the nested route component */}
           <div className="w-full md:w-3/4">
             <Outlet />
           </div>

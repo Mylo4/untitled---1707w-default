@@ -32,7 +32,7 @@ export const ElementDefault = (): JSX.Element => {
       }`}>
         <div className="flex items-center">
           <img 
-            src="https://c.animaapp.com/PyecxKQm/img/soap-%282%29-3.png" 
+            src="https://c.animaapp.com/PyecxKQm/img/group-19.png" 
             alt="Логотип Мыло" 
             className="h-8 w-auto mr-6"
           />
@@ -50,7 +50,7 @@ export const ElementDefault = (): JSX.Element => {
         </div>
         <div>
           <button 
-            className="bg-[#1ad76f] hover:bg-[#18c265] text-white px-6 py-2 rounded-full text-sm font-semibold font-['Poppins',Helvetica] transition-colors"
+            className="bg-[#e20e41] hover:bg-[#e20e41] text-white px-6 py-2 rounded-full text-sm font-semibold font-['Poppins',Helvetica] transition-colors"
             onClick={() => {
               // Scroll to the login form
               const loginForm = document.getElementById('nicknameInput');

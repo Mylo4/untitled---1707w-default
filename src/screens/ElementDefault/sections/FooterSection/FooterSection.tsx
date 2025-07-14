@@ -1,22 +1,20 @@
-import { UserIcon } from "lucide-react";
 import React from "react";
-import { Button } from "../../../../components/ui/button";
-import { Input } from "../../../../components/ui/input";
+import { Link } from "react-router-dom";
 
 // Define links data for reusability
 const linkSections = [
   {
     title: "Ссылки",
     links: [
-      { text: "Договор оферты", href: "#" },
-      { text: "Политика конфиденциальности", href: "#" },
+      { text: "Договор оферты", href: "/offer-agreement" },
+      { text: "Политика конфиденциальности", href: "/privacy-policy" },
     ],
   },
   {
     title: "Полезное",
     links: [
       { text: "Карта", href: "/map" },
-      { text: "Наш Discord", href: "https://discord.com/invite/Z8GJGH59TU" },
+      { text: "Наш Discord", href: "https://discord.com/invite/Z8GJGH59TU", external: true },
       { text: "Вики", href: "/wiki" },
     ],
   },
@@ -27,7 +25,7 @@ const socialIcons = [
   {
     name: "Discord",
     src: "https://c.animaapp.com/PyecxKQm/img/discord-svg.svg",
-    href: "https://discord.com/invite/Z8GJGH59TU",
+    href: "#",
   },
   {
     name: "TikTok",
@@ -59,7 +57,7 @@ export const FooterSection = (): JSX.Element => {
         <div className="mb-10 md:mb-0">
           <h2 className="text-3xl font-bold [font-family:'Poppins',Helvetica] mb-4">
             <span className="text-white">Войти на&nbsp;&nbsp;</span>
-            <span className="text-[#1ad76f]">Сервер</span>
+            <span className="text-[#e20e41]">Сервер</span>
           </h2>
 
           <p className="text-xs font-extralight text-white [font-family:'IBM_Plex_Sans',Helvetica] mb-4">
@@ -70,18 +68,20 @@ export const FooterSection = (): JSX.Element => {
             <div className="relative flex-1">
               <div className="relative flex items-center">
                 <div className="absolute left-5 top-1/2 transform -translate-y-1/2">
-                  <UserIcon className="w-4 h-4 text-white" />
+                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                  </svg>
                 </div>
-                <Input
+                <input
                   id="footerNicknameInput"
-                  className="pl-12 h-[51px] bg-[#1d1f2e] text-[#a6acd1] text-xs rounded-[33px_0px_0px_33px] border-[#2a2c3c] [font-family:'Poppins',Helvetica]"
+                  className="pl-12 h-[51px] bg-[#1d1f2e] text-[#a6acd1] text-xs rounded-[33px_0px_0px_33px] border border-[#2a2c3c] w-full [font-family:'Poppins',Helvetica] outline-none"
                   placeholder="Ваш никнейм..."
                 />
               </div>
             </div>
-            <Button 
-              className="h-[51px] w-[101px] bg-[#1ad76f] hover:bg-[#18c265] text-white font-semibold text-[9.9px] rounded-[0px_22px_22px_0px] [font-family:'Poppins',Helvetica]"
-              onClick={async (event) => { // Добавлено async
+            <button 
+              className="h-[51px] w-[101px] bg-[#e20e41] hover:bg-[#c90d3a] text-white font-semibold text-[9.9px] rounded-[0px_22px_22px_0px] [font-family:'Poppins',Helvetica] transition-colors"
+              onClick={() => {
                 const nicknameInput = document.getElementById('footerNicknameInput') as HTMLInputElement;
                 const nickname = nicknameInput?.value.trim();
                 
@@ -90,44 +90,26 @@ export const FooterSection = (): JSX.Element => {
                   return;
                 }
                 
-                // Показываем индикатор загрузки
-                const button = event.currentTarget as HTMLButtonElement;
-                const originalText = button.innerText;
-                button.innerText = "Загрузка...";
-                button.disabled = true;
+                // EasyDonate payment parameters
+                const serverId = 124113; // ID сервера
+                const productId = 995137; // ID товара (проходка)
                 
-                try {
-                  // Импортируем сервис для создания платежа
-                  const { createPayment } = await import("../../../../services/paymentService");
-                  
-                  // Параметры для создания платежа
-                  const paymentData = {
-                    customer: nickname,
-                    server_id: 124113, // ID вашего сервера
-                    products: { "995137": 1 } // ID товара и количество
-                  };
-                  
-                  // Создаем платеж, отправляя запрос на ваш бэкенд
-                  const response = await createPayment(paymentData);
-                  
-                  if (response.success && response.payment_url) {
-                    // Перенаправляем пользователя на полученную ссылку оплаты
-                    window.location.href = response.payment_url;
-                  } else {
-                    alert(`Ошибка при создании платежа: ${response.error || 'Неизвестная ошибка'}`);
-                  }
-                } catch (error) {
-                  console.error('Ошибка:', error);
-                  alert('Произошла ошибка при обработке платежа');
-                } finally {
-                  // Восстанавливаем состояние кнопки
-                  button.innerText = originalText;
-                  button.disabled = false;
-                }
+                // Создаем объект продуктов в формате {"995137": 1}
+                const productsObj = { [productId]: 1 };
+                const encodedProducts = encodeURIComponent(JSON.stringify(productsObj));
+                
+                // Build the payment URL with the correct API format
+                const paymentUrl = `https://easydonate.ru/api/v3/shop/payment/create?customer=${encodeURIComponent(nickname)}&server_id=${serverId}&products=${encodedProducts}`;
+                
+                // Show payment URL in alert (for development/testing)
+                alert(`Переход на страницу оплаты: ${paymentUrl}`);
+                
+                // In production, uncomment this line to redirect:
+                // window.location.href = paymentUrl;
               }}
             >
               Купить
-            </Button>
+            </button>
           </div>
 
           <div className="mt-16">
@@ -139,33 +121,36 @@ export const FooterSection = (): JSX.Element => {
 
         {/* Links Sections */}
         <div className="flex gap-16">
-          {linkSections.map((section, index) => (
-            <div key={index} className="mb-6 md:mb-0">
-              <h3 className="text-[16.5px] font-semibold text-white [font-family:'Poppins',Helvetica] mb-5">
-                {section.title}
-              </h3>
-              <ul className="space-y-2">
-                {section.links.map((link, linkIndex) => (
-                  <li key={linkIndex}>
-                    <a
-                      href={
-                        link.text === "Договор оферты" 
-                          ? "/offer-agreement" 
-                          : link.text === "Политика конфиденциальности"
-                          ? "/privacy-policy"
-                          : link.href
-                      }
-                      className="text-[11px] font-medium text-[#a7add2] [font-family:'IBM_Plex_Sans',Helvetica] hover:text-white transition-colors"
-                      target={link.href.startsWith('http') ? '_blank' : '_self'}
-                      rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                    >
-                      {link.text}
-                    </a>
-                  </li>
+                {linkSections.map((section, index) => (
+                  <div key={index} className="mb-6 md:mb-0">
+                    <h3 className="text-[16.5px] font-semibold text-white [font-family:'Poppins',Helvetica] mb-5">
+                      {section.title}
+                    </h3>
+                    <ul className="space-y-2">
+                      {section.links.map((link, linkIndex) => (
+                        <li key={linkIndex}>
+                          {link.external ? (
+                            <a
+                              href={link.href}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-[11px] font-medium text-[#a7add2] [font-family:'IBM_Plex_Sans',Helvetica] hover:text-white transition-colors"
+                            >
+                              {link.text}
+                            </a>
+                          ) : (
+                            <Link
+                              to={link.href}
+                              className="text-[11px] font-medium text-[#a7add2] [font-family:'IBM_Plex_Sans',Helvetica] hover:text-white transition-colors"
+                            >
+                              {link.text}
+                            </Link>
+                          )}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 ))}
-              </ul>
-            </div>
-          ))}
 
           {/* Social Icons */}
           <div className="flex flex-col gap-4">
@@ -179,8 +164,6 @@ export const FooterSection = (): JSX.Element => {
                   backgroundSize: "100% 100%",
                 }}
                 aria-label={icon.name}
-                target={icon.href.startsWith('http') ? '_blank' : '_self'}
-                rel={icon.href.startsWith('http') ? 'noopener noreferrer' : undefined}
               />
             ))}
             <a href="#" className="mt-2">

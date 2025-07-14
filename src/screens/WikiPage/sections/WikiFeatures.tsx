@@ -3,15 +3,15 @@ import React from "react";
 export const WikiFeatures = (): JSX.Element => {
   return (
     <div className="bg-[#161724] rounded-xl p-8 border border-[#2a2c3c]">
-      <h2 className="text-3xl font-bold mb-6 text-[#1ad76f] flex items-center">
+      <h2 className="text-3xl font-bold mb-6 text-[#e20e41] flex items-center">
         <span className="mr-3">🎮</span>
         <span>Особенности</span>
       </h2>
       
       <div className="prose prose-invert max-w-none">
         <div className="feature-grid grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-          <div className="feature-card bg-[rgba(255,255,255,0.05)] p-6 rounded-lg border border-[rgba(26,215,111,0.3)] transition-all duration-300 hover:transform hover:-translate-y-1 hover:bg-[rgba(26,215,111,0.1)] hover:shadow-lg">
-            <h3 className="text-[#1ad76f] text-xl mb-4 flex items-center">
+          <div className="feature-card bg-[rgba(255,255,255,0.05)] p-6 rounded-lg border border-[rgba(226,14,65,0.3)] transition-all duration-300 hover:transform hover:-translate-y-1 hover:bg-[rgba(226,14,65,0.1)] hover:shadow-lg">
+            <h3 className="text-[#e20e41] text-xl mb-4 flex items-center">
               <i className="mr-2">🔮</i>
               Палочка отладки
             </h3>
@@ -23,8 +23,8 @@ export const WikiFeatures = (): JSX.Element => {
             </p>
           </div>
           
-          <div className="feature-card bg-[rgba(255,255,255,0.05)] p-6 rounded-lg border border-[rgba(26,215,111,0.3)] transition-all duration-300 hover:transform hover:-translate-y-1 hover:bg-[rgba(26,215,111,0.1)] hover:shadow-lg">
-            <h3 className="text-[#1ad76f] text-xl mb-4 flex items-center">
+          <div className="feature-card bg-[rgba(255,255,255,0.05)] p-6 rounded-lg border border-[rgba(226,14,65,0.3)] transition-all duration-300 hover:transform hover:-translate-y-1 hover:bg-[rgba(226,14,65,0.1)] hover:shadow-lg">
+            <h3 className="text-[#e20e41] text-xl mb-4 flex items-center">
               <i className="mr-2">🧪</i>
               Зелье против фантомов
             </h3>
@@ -36,8 +36,8 @@ export const WikiFeatures = (): JSX.Element => {
             </div>
           </div>
           
-          <div className="feature-card bg-[rgba(255,255,255,0.05)] p-6 rounded-lg border border-[rgba(26,215,111,0.3)] transition-all duration-300 hover:transform hover:-translate-y-1 hover:bg-[rgba(26,215,111,0.1)] hover:shadow-lg">
-            <h3 className="text-[#1ad76f] text-xl mb-4 flex items-center">
+          <div className="feature-card bg-[rgba(255,255,255,0.05)] p-6 rounded-lg border border-[rgba(226,14,65,0.3)] transition-all duration-300 hover:transform hover:-translate-y-1 hover:bg-[rgba(226,14,65,0.1)] hover:shadow-lg">
+            <h3 className="text-[#e20e41] text-xl mb-4 flex items-center">
               <i className="mr-2">🛡️</i>
               Кастомизация арморстендов
             </h3>
@@ -49,8 +49,8 @@ export const WikiFeatures = (): JSX.Element => {
             </p>
           </div>
           
-          <div className="feature-card bg-[rgba(255,255,255,0.05)] p-6 rounded-lg border border-[rgba(26,215,111,0.3)] transition-all duration-300 hover:transform hover:-translate-y-1 hover:bg-[rgba(26,215,111,0.1)] hover:shadow-lg">
-            <h3 className="text-[#1ad76f] text-xl mb-4 flex items-center">
+          <div className="feature-card bg-[rgba(255,255,255,0.05)] p-6 rounded-lg border border-[rgba(226,14,65,0.3)] transition-all duration-300 hover:transform hover:-translate-y-1 hover:bg-[rgba(226,14,65,0.1)] hover:shadow-lg">
+            <h3 className="text-[#e20e41] text-xl mb-4 flex items-center">
               <i className="mr-2">🧙‍♂️</i>
               Странствующие торговцы
             </h3>
@@ -60,8 +60,8 @@ export const WikiFeatures = (): JSX.Element => {
           </div>
         </div>
         
-        <div className="feature-highlight bg-[rgba(0,0,0,0.2)] p-6 rounded-lg border border-[rgba(26,215,111,0.3)] mb-8">
-          <h3 className="text-[#1ad76f] text-2xl mb-4">🍺 Плагин Brewery</h3>
+        <div className="feature-highlight bg-[rgba(0,0,0,0.2)] p-6 rounded-lg border border-[rgba(226,14,65,0.3)] mb-8">
+          <h3 className="text-[#e20e41] text-2xl mb-4">🍺 Плагин Brewery</h3>
           <div className="flex flex-col md:flex-row gap-6">
             <div className="md:w-2/3">
               <p className="text-[#a7add2] mb-4">
@@ -82,7 +82,7 @@ export const WikiFeatures = (): JSX.Element => {
         </div>
         
         <div className="feature-list">
-          <h3 className="text-[#1ad76f] text-2xl mb-4">Другие особенности сервера</h3>
+          <h3 className="text-[#e20e41] text-2xl mb-4">Другие особенности сервера</h3>
           <ul className="list-disc pl-6 space-y-4 text-[#a7add2]">
             <li>
               <strong className="text-white">Эффект замедления отключает полёт на элитрах</strong> — будьте осторожны при использовании элитр под эффектом замедления

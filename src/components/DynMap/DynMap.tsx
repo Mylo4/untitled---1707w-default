@@ -48,10 +48,26 @@ export const DynMap: React.FC<DynMapProps> = ({
     return queryString ? `${serverUrl}?${queryString}` : serverUrl;
   };
 
+  // Check DynMap API availability
+  const checkDynMapStatus = async () => {
+    try {
+      const response = await fetch(`${serverUrl}/up/configuration`);
+      if (response.ok) {
+        const config = await response.json();
+        setMapData(config);
+        setError(null);
+      } else {
+        setError('DynMap сервер недоступен');
+      }
+    } catch (err) {
+      setError('Ошибка подключения к DynMap серверу');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   useEffect(() => {
-    // Убираем проверку API, просто загружаем iframe
-    setError(null);
-    setIsLoading(true);
+    checkDynMapStatus();
   }, [serverUrl]);
 
   const handleIframeLoad = () => {
@@ -109,10 +125,7 @@ export const DynMap: React.FC<DynMapProps> = ({
   const retryConnection = () => {
     setIsLoading(true);
     setError(null);
-    // Просто перезагружаем iframe
-    if (iframeRef.current) {
-      iframeRef.current.src = buildDynMapUrl();
-    }
+    checkDynMapStatus();
   };
 
   return (

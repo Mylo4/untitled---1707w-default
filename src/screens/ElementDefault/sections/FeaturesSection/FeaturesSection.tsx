@@ -1,13 +1,4 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { Card, CardContent } from "../../../../components/ui/card";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-  type CarouselApi,
-} from "../../../../components/ui/carousel";
 
 // Feature data for mapping
 const features = [
@@ -24,7 +15,7 @@ const features = [
     icon: "https://c.animaapp.com/PyecxKQm/img/protection-svg-3.svg",
     title: "Качественное железо",
     description:
-      "Наш сервер размещается на собственном высококачественном хостинге с революционным ядром Folia — технологией следующего поколения. Пока другие серверы тормозят при 50+ игроках, мы обеспечиваем кристально чистые 20 TPS даже при 100+ активных игроков в одном мире благодаря многопоточной архитектуре.",
+      "Наш сервер размещается на собственном высококачественном хостинге с революционным ядром Folia — технологией следующего поколения. Пока другие серверы тормозят при 50+ игроков, мы обеспечиваем кристально чистые 20 TPS даже при 100+ активных игроков в одном мире благодаря многопоточной архитектуре.",
     image: "https://c.animaapp.com/PyecxKQm/img/-2563@2x.png",
   },
   {
@@ -70,26 +61,20 @@ const features = [
 ];
 
 export const FeaturesSection = (): JSX.Element => {
-  const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    if (!api) {
-      return;
-    }
-
-    setCount(api.scrollSnapList().length);
-    setCurrent(api.selectedScrollSnap());
-
-    api.on("select", () => {
-      setCurrent(api.selectedScrollSnap());
-    });
-  }, [api]);
+  const count = features.length;
 
   const goToSlide = useCallback((index: number) => {
-    api?.scrollTo(index);
-  }, [api]);
+    setCurrent(index);
+  }, []);
+
+  const nextSlide = () => {
+    setCurrent((prev) => (prev + 1) % count);
+  };
+
+  const prevSlide = () => {
+    setCurrent((prev) => (prev - 1 + count) % count);
+  };
 
   return (
     <section className="w-full py-16 relative overflow-hidden bg-[#161724]">
@@ -103,18 +88,24 @@ export const FeaturesSection = (): JSX.Element => {
       <div className="container mx-auto px-4 relative z-10">
         <h2 className="text-[38.5px] font-bold [font-family:'Poppins',Helvetica] mb-12 text-center md:text-left md:ml-6">
           <span className="text-white">Наши </span>
-          <span className="text-[#1ad76f]">Особенности</span>
+          <span className="text-[#e20e41]">Особенности</span>
         </h2>
 
-        <Carousel className="w-full" opts={{ loop: true }} setApi={setApi}>
-          <CarouselContent>
-            {features.map((feature) => (
-              <CarouselItem
-                key={feature.id}
-                className="md:basis-1/2 lg:basis-1/3"
-              >
-                <Card className="h-full bg-[#161724] rounded-[11px] border border-solid border-[#2a2c3c] relative overflow-hidden">
-                  <CardContent className="p-0 h-full">
+        <div className="relative w-full">
+          <div className="overflow-hidden">
+            <div 
+              className="flex transition-transform duration-300 ease-in-out"
+              style={{ 
+                transform: `translateX(-${current * (100 / Math.min(3, count))}%)`,
+                width: `${(count / Math.min(3, count)) * 100}%`
+              }}
+            >
+              {features.map((feature) => (
+                <div
+                  key={feature.id}
+                  className="w-full md:w-1/2 lg:w-1/3 flex-shrink-0 px-2"
+                >
+                  <div className="h-full bg-[#161724] rounded-[11px] border border-solid border-[#2a2c3c] relative overflow-hidden">
                     <div className="relative h-full p-6">
                       <div className="flex">
                         <div className="w-[60%] pr-4">
@@ -144,14 +135,25 @@ export const FeaturesSection = (): JSX.Element => {
                         </div>
                       </div>
                     </div>
-                  </CardContent>
-                </Card>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <CarouselPrevious className="left-2 bg-[#161724] border-[#2a2c3c] text-white" />
-          <CarouselNext className="right-2 bg-[#161724] border-[#2a2c3c] text-white" />
-        </Carousel>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          
+          <button 
+            onClick={prevSlide}
+            className="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-[#161724] border border-[#2a2c3c] text-white rounded-full flex items-center justify-center hover:bg-[#2a2c3c] transition-colors"
+          >
+            ‹
+          </button>
+          <button 
+            onClick={nextSlide}
+            className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-[#161724] border border-[#2a2c3c] text-white rounded-full flex items-center justify-center hover:bg-[#2a2c3c] transition-colors"
+          >
+            ›
+          </button>
+        </div>
 
         {/* Pagination dots */}
         <div className="flex justify-center mt-8 gap-2">
@@ -159,7 +161,7 @@ export const FeaturesSection = (): JSX.Element => {
             <button
               key={index}
               className={`w-3 h-3 rounded-full transition-all ${
-                current === index ? "bg-[#1ad76f] w-6" : "bg-[#2a2c3c]"
+                current === index ? "bg-[#e20e41] w-6" : "bg-[#2a2c3c]"
               }`}
               onClick={() => goToSlide(index)}
               aria-label={`Перейти к слайду ${index + 1}`}
